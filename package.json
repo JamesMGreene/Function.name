@@ -1,0 +1,30 @@
+{
+  "name": "function.name-polyfill",
+  "version": "1.0.0",
+  "description": "Polyfill for ECMAScript 6's `Function.name`",
+  "author": {
+    "name": "James M. Greene",
+    "email": "james.m.greene@gmail.com",
+    "url": "http://greene.io/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesMGreene/Function.name.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JamesMGreene/Function.name/issues"
+  },
+  "homepage": "https://github.com/JamesMGreene/Function.name#readme",
+  "keywords": [
+    "es6",
+    "function.name",
+    "fn.name",
+    "polyfill",
+    "ie"
+  ],
+  "main": "Function.name.js",
+  "scripts": {
+    "test": "echo No tests right now"
+  }
+}
