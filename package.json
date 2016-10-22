@@ -1,6 +1,6 @@
 {
   "name": "function.name-polyfill",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Polyfill for ECMAScript 6's `Function.name`",
   "author": {
     "name": "James M. Greene",
