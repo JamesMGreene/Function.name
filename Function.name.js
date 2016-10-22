@@ -44,7 +44,8 @@ Function.prototype._name = _name;
 // Polyfill it!
 if (canDefineProp && needsPolyfill) {
   Object.defineProperty(Function.prototype, "name", {
-    get: _name
+    get: _name,
+    configurable: true
   });
 }
 
