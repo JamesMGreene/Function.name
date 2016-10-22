@@ -1,15 +1,16 @@
 (function() {
 
-var fnNamePrefixRegex = /^[\S\s]*?function\s*/;
-var fnNameSuffixRegex = /[\s\(\/][\S\s]+$/;
+var fnNameMatchRegex = /^[\S\s]*?function\s+([^\(\s]*)\s*/;
 
 function _name() {
-  var name = "";
+  var match,
+      name = "";
   if (this === Function || this === Function.prototype.constructor) {
     name = "Function";
   }
   else if (this !== Function.prototype) {
-    name = ("" + this).replace(fnNamePrefixRegex, "").replace(fnNameSuffixRegex, "");
+    match = ("" + this).match(fnNameMatchRegex);
+    name = match && match[1] || "";
   }
   return name;
 }
