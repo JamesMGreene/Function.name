@@ -35,6 +35,21 @@ var canDefineProp = typeof Object.defineProperty === "function" &&
     }
     return result;
   })();
+var canDefineGetter = typeof Object.prototype.__defineGetter__ === "function" &&
+  (function() {
+    var result;
+    try {
+      Function.prototype.__defineGetter__("_abc", function() {
+        return "foo";
+      });
+      result = Function.prototype._abc === "foo";
+      delete Function.prototype._abc;
+    }
+    catch (e) {
+      result = false;
+    }
+    return result;
+  })();
 
 
 
@@ -43,27 +58,60 @@ Function.prototype._name = _name;
 
 
 // Polyfill it!
-if (canDefineProp && needsPolyfill) {
-  Object.defineProperty(Function.prototype, "name", {
-    get: function() {
+// For:
+//  * IE >=9 <12
+//  * Chrome <33
+if (needsPolyfill) {
+  // For:
+  //  * IE >=9 <12
+  //  * Chrome >=5 <33
+  if (canDefineProp) {
+    Object.defineProperty(Function.prototype, "name", {
+      get: function() {
+        var name = _name.call(this);
+
+        // Since named function definitions have immutable names, also memoize the
+        // output by defining the `name` property directly on this Function
+        // instance so that this polyfill will not need to be invoked again
+        if (this !== Function.prototype) {
+          Object.defineProperty(this, "name", {
+            value: name
+          });
+        }
+
+        return name;
+      }
+    });
+  }
+  // For:
+  //  * Chrome <5
+  else if (canDefineGetter) {
+    // NOTE:
+    // The snippet:
+    //
+    //     x.__defineGetter__('y', z);
+    //
+    // ...is essentially equivalent to:
+    //
+    //     Object.defineProperty(x, 'y', {
+    //       get: z,
+    //       configurable: true,  // <-- key difference #1
+    //       enumerable: true     // <-- key difference #2
+    //     });
+    //
+    Function.prototype.__defineGetter__("name", function() {
       var name = _name.call(this);
 
       // Since named function definitions have immutable names, also memoize the
-      // output by defining the `name` property on this Function instance so
-      // that this polyfill will not need to be invoked again
-      Object.defineProperty(this, "name", {
-        value: name,
-        configurable: true,
-        writable: false,
-        enumerable: false
-      });
+      // output by defining the `name` property directly on this Function
+      // instance so that this polyfill will not need to be invoked again
+      if (this !== Function.prototype) {
+        this.__defineGetter__("name", function() { return name; });
+      }
 
       return name;
-    },
-    configurable: true,
-    writable: false,
-    enumerable: false
-  });
+    });
+  }
 }
 
 })();
