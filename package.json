@@ -1,7 +1,7 @@
 {
   "name": "function.name-polyfill",
-  "version": "1.0.3",
-  "description": "Polyfill for ECMAScript 6's `Function.name`",
+  "version": "1.0.4",
+  "description": "Polyfill for the basic functionality of `Function.name` accessor property in its pre-ES6 form",
   "author": {
     "name": "James M. Greene",
     "email": "james.m.greene@gmail.com",
@@ -17,11 +17,12 @@
   },
   "homepage": "https://github.com/JamesMGreene/Function.name#readme",
   "keywords": [
-    "es6",
+    "pre-es6",
     "function.name",
     "fn.name",
     "polyfill",
-    "ie"
+    "ie",
+    "chrome"
   ],
   "main": "Function.name.js",
   "scripts": {
