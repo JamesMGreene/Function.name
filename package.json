@@ -1,6 +1,6 @@
 {
   "name": "function.name-polyfill",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Polyfill for the basic functionality of `Function.name` accessor property in its pre-ES6 form",
   "author": {
     "name": "James M. Greene",
