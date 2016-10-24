@@ -40,11 +40,11 @@ For IE `<9`, you can still use `fn._name()` instead.
 #### Pre-ES6 Form
 
  - In short, this means that this polyfilled `name` accessor property can provide you with the name of a named function definition (either a named function declaration or a named function expression).
- - Unlike its enhanced ES6 form, this polyfilled `name` accessor property is also intentionally marked as **non-configurable** to keep it better aligned with other browsers with a similar support level.
+ - Unlike other browsers with a similar support level for the pre-ES6 form, this poyfilled `name` accessor property is also intentionally marked as **configurable**.
 
 #### Chrome `<5`
 
- - When polyfilling for Chrome `<5`, the accessor property will be **enumerable** and **configurable** due to having to implement it using [`Object.prototype.__defineGetter__`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/__defineGetter__) instead of [`Object.defineProperty`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty).
+ - When polyfilling for Chrome `<5`, the accessor property will be **configurable** (expected) _AND_ **enumerable** (unexpected) due to having to implement it using [`Object.prototype.__defineGetter__`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/__defineGetter__) instead of [`Object.defineProperty`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty).
 
 
 ## Other Documentation

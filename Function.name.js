@@ -3,16 +3,15 @@
 var fnNameMatchRegex = /^\s*function\s+([^\(\s]*)\s*/;
 
 function _name() {
-  var match,
-      name = "";
+  var match, name;
   if (this === Function || this === Function.prototype.constructor) {
     name = "Function";
   }
   else if (this !== Function.prototype) {
     match = ("" + this).match(fnNameMatchRegex);
-    name = match && match[1] || "";
+    name = match && match[1];
   }
-  return name;
+  return name || "";
 }
 
 // Inspect the polyfill-ability of this browser
@@ -75,12 +74,14 @@ if (needsPolyfill) {
         // instance so that this polyfill will not need to be invoked again
         if (this !== Function.prototype) {
           Object.defineProperty(this, "name", {
-            value: name
+            value: name,
+            configurable: true
           });
         }
 
         return name;
-      }
+      },
+      configurable: true
     });
   }
   // For:
