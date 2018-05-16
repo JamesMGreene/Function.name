@@ -1,6 +1,6 @@
 (function() {
 
-var fnNameMatchRegex = /^\s*function\s+([^\(\s]*)\s*/;
+var fnNameMatchRegex = /^\s*function(?:\s|\s*\/\*.*\*\/\s*)+([^\(\s\/]*)\s*/;
 
 function _name() {
   var match, name;

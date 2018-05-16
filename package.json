@@ -1,11 +1,11 @@
 {
   "name": "function.name-polyfill",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Polyfill for the basic functionality of `Function.name` accessor property in its pre-ES6 form",
   "author": {
     "name": "James M. Greene",
     "email": "james.m.greene@gmail.com",
-    "url": "http://greene.io/"
+    "url": "https://jamesmgreene.github.io/"
   },
   "license": "MIT",
   "repository": {
